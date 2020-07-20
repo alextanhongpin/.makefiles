@@ -15,6 +15,7 @@ Automate everything with Makefile
 - [Useful variables](#useful-variables)
 - [Using dynamic variables in command](#using-dynamic-variables-in-command)
 - [Modular Makefiles](#modular-makefiles)
+- [Read Input](#read-input)
 
 ## Creating a Makefile
 
@@ -255,3 +256,19 @@ $ make stop
 ```
 
 The only disadvantage is that the naming of the command cannot be the same.
+
+## Read Input
+
+You can read input in makefiles too. The example below copies an existing folder and rename all the variables/classes for code reuse:
+
+```makefile
+service: # Clones the currency folder, and replaces all the name with given name.
+	@read -p "Enter folder name: " folder; \
+	read -p "Enter class name: " class; \
+	read -p "Enter singular name: " singular; \
+	read -p "Enter pluralize name: " plural; \
+	cp -r src/currency src/$$folder; \
+	sed -i "" "s/Currency/$$class/g" src/$$folder/**.ts; \
+	sed -i "" "s/currency/$$singular/g" src/$$folder/**.ts; \
+	sed -i "" "s/currencies/$$plural/g" src/$$folder/**.ts;
+```
