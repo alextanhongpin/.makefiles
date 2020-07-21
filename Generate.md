@@ -41,9 +41,18 @@ define camelcase
 	gsed -r 's/-([a-z])/\U\1/g' <<< $(1)
 endef
 
+# Multi-line function
+define test_multi
+	$(eval first := $(1))
+	$(eval second := $(2))
+	echo "$$first $$second"
+endef
+
 test:
+	@$(call test_multi,"first","second")
 	@$(call pascalcase,'hello-world')
 	@$(call camelcase,'hello-world')
+
 ```
 
 Note that the argument must be in backticks:
