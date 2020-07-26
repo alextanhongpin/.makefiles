@@ -27,3 +27,16 @@ not_production:
 run: not_production
 	@echo 'running task'
 ```
+
+## Error guard, alternative
+
+```mk
+
+guard_production:
+ifeq ($(ENV),production)
+	@echo $* cannot run in production && exit 1;
+endif
+
+hello: guard_production
+	@echo hello
+```
