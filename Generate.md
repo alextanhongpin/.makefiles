@@ -76,3 +76,37 @@ service-%: # Clones the currency folder, and replaces all the name with given na
 	sed -i "" "s/currencies/$$plural/g" src/$$folder/**.ts; \
 	echo "Created $$folder";
 ```
+
+## Add imports / remove imports using SED
+
+```mk
+# For the given entity (e.g. user), inject the imports above the given matched pattern.
+define template_inject
+	# Text pattern to match against.
+	$(eval pattern := inject code here)
+	$(eval name := $(shell echo $(1)))
+	for item in Service Repository; do \
+		gsed -i "/$(pattern)/Ii $(name)$$item: container($(name)$$item).asClass()" text.txt; \
+	done
+endef
+
+define template_import
+	# Text pattern to match against.
+	$(eval pattern := inject code here)
+	$(eval name := $(shell echo $(1)))
+	gsed -i "/$(pattern)/Ii import { $(name)Service, $(name)Repository, $(name)Resolver } from '$(name)'" text.txt;
+endef
+
+# Remove any line that contains the following import, ignoring case-sensitivity.
+define remove_line
+	gsed -i "/$(shell echo $(1))Service/Id" text.txt; \
+	gsed -i "/$(shell echo $(1))Repository/Id" text.txt
+endef
+
+inject:
+	$(call template_import,'user')
+	$(call template_inject,'user')
+
+remove_import:
+	$(call remove_line,'user')
+```
