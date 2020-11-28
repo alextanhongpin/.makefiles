@@ -40,3 +40,22 @@ endif
 hello: guard_production
 	@echo hello
 ```
+
+
+## Checking version mismatch
+
+```mk
+is_valid_protoc_version:
+ifneq ($(shell protoc --version),libprotoc 3.14.0)
+	$(error Expected version libprotoc 3.14.0, got $(shell protoc --version))
+endif
+
+check_protoc_version: is_valid_protoc_version
+```
+
+If the version matches, the following output will be printed.
+
+Output:
+```
+make: Nothing to be done for `check_protoc_version'.
+```
