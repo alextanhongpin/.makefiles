@@ -11,7 +11,8 @@ NAME := world
 # TL;DR; The envsubst program substitutes the values of environment variables.
 
 echo:
-	@echo `envsubst < template.txt` > out.txt
+	@# Read from template.txt, and write to out.txt
+	@echo envsubst < template.txt > out.txt
 	@echo wrote to out.txt
 
 dry-run:
