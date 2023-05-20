@@ -272,3 +272,10 @@ service: # Clones the currency folder, and replaces all the name with given name
 	sed -i "" "s/currency/$$singular/g" src/$$folder/**.ts; \
 	sed -i "" "s/currencies/$$plural/g" src/$$folder/**.ts;
 ```
+
+
+## Makefile alternatives
+
+- https://taskfile.dev/
+- https://github.com/casey/just (this is particularly interesting, however, it requires installation while Makefile doesn't)
+- https://magefile.org/
