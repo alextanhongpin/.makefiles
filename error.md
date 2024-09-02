@@ -59,3 +59,14 @@ Output:
 ```
 make: Nothing to be done for `check_protoc_version'.
 ```
+
+
+## Checking if environment variable is set
+
+```bash
+ndef = $(if $(value $(1)),,$(error $(1) not set))
+
+sed:
+	$(call ndef,msg)
+	echo $(msg)
+```
