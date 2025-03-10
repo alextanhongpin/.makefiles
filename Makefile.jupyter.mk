@@ -14,7 +14,7 @@ jupyter:
 
 install:
 	@uv add jupyterlab-vim jupyterlab-code-formatter ipywidgets black isort
-	@uv add numpy==1.23.0 matplotlib seaborn scikit-learn==1.2.0
+	@uv add numpy matplotlib seaborn scikit-learn
 	#@uv run jupyter labextension install @jupyter-widgets/jupyterlab-manager
 	#@uv run jupyter labextension install jupyter-matplotlib
 
