@@ -30,13 +30,17 @@ render: create_docs_dir
 render_diff: create_docs_dir
 	$(foreach file, $(shell git diff HEAD --name-only | grep .ipynb), uv run quarto render $(file) --to gfm --output-dir docs/)
 
-
 create_docs_dir:
 	mkdir -p docs
 
+install:
+	curl -LsSf https://astral.sh/uv/install.sh | sh
+
 
 lint:
-	@uv run black *.py
+	@uvx ruff format
+	@uvx ruff check --fix --select I
+	@uv run mypy . # uvx runs in separate virtual environment.
 
 # uv run quarto create project
 # uv init --python 3.10 
