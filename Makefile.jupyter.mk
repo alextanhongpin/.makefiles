@@ -72,3 +72,7 @@ endef
 
 init_quarto:
 	@echo "$$quarto_config" > _quarto.yaml
+
+# Export poetry packages to requirements.txt
+# poetry export --without-hashes --format=requirements.txt > requirements.txt
+# uv add -r requirements.txt
