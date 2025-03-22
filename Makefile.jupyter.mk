@@ -19,7 +19,9 @@ install:
 	#@uv run jupyter labextension install jupyter-matplotlib
 	#@uv add 'jupyter-ai[all]'
 	#%load_ext jupyter_ai
-	#%%ai ollama:llama3.2
+	#%%ai ollama:llama3.2 -f code|image|markdown|math|html|text|json
+	#%config AiMagics.default_language_model = "ollama:llama3.2"
+	# to ignore formatter, # fmt:off, fmt:on
 
 
 preview:
