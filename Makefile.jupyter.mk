@@ -17,6 +17,7 @@ install:
 	@uv add numpy matplotlib seaborn scikit-learn
 	#@uv run jupyter labextension install @jupyter-widgets/jupyterlab-manager
 	#@uv run jupyter labextension install jupyter-matplotlib
+	#@uv add 'jupyter-ai[all]'
 
 
 preview:
